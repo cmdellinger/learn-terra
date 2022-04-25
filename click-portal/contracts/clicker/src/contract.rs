@@ -18,7 +18,7 @@ pub fn instantiate(
   info: MessageInfo,
   msg: InstantiateMsg,
 ) -> Result<Response, ContractError> {
-    
+
   // We're storing stuff in a variable called "state" of type "State"
   let state = State {
     count: msg.count,
@@ -35,4 +35,16 @@ pub fn instantiate(
     .add_attribute("method", "instantiate")
     .add_attribute("owner", info.sender)
     .add_attribute("count", msg.count.to_string()))
+}
+
+#[cfg_attr(not(feature = "library"), entry_point)]
+pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
+  match msg {
+      QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
+  }
+}
+
+fn query_count(deps: Deps) -> StdResult<CountResponse> {
+  let state = STATE.load(deps.storage)?;
+  Ok(CountResponse { count: state.count })
 }
