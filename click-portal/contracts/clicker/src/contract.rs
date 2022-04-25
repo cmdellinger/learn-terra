@@ -18,5 +18,21 @@ pub fn instantiate(
   info: MessageInfo,
   msg: InstantiateMsg,
 ) -> Result<Response, ContractError> {
-  Ok(Response::default())
+    
+  // We're storing stuff in a variable called "state" of type "State"
+  let state = State {
+    count: msg.count,
+    owner: info.sender.clone(),
+  };
+
+  // We're setting the contract version using a helper function we imported
+  set_contract_version(deps.storage, CONTRACT_NAME, CONTRACT_VERSION)?;
+  // We're storing state in a special variable called "STATE"
+  STATE.save(deps.storage, &state)?;
+
+  // Sending a response back to the caller
+  Ok(Response::new()
+    .add_attribute("method", "instantiate")
+    .add_attribute("owner", info.sender)
+    .add_attribute("count", msg.count.to_string()))
 }
