@@ -7,9 +7,9 @@
       }
     },
     "clicker": {
-      "codeId": "5",
+      "codeId": "7",
       "contractAddresses": {
-        "default": "terra1plju286nnfj3z54wgcggd4enwaa9fgf5kgrgzl"
+        "default": "terra1pcknsatx5ceyfu6zvtmz3yr8auumzrdts4ax4a"
       }
     }
   }

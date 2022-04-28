@@ -8,6 +8,7 @@ use cw_storage_plus::Item;
 pub struct State {
     pub score: i32,
     pub owner: Addr,
+    pub scores: Vec<(Addr, u16)>,
 }
 
-pub const STATE: Item<State> = Item::new("state");
+pub const STORAGE: Item<State> = Item::new("state");
