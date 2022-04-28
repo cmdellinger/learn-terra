@@ -4,7 +4,7 @@ use cosmwasm_std::{to_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response,
 use cw2::set_contract_version;
 
 use crate::error::ContractError;
-use crate::msg::{CountResponse, InstantiateMsg, QueryMsg};
+use crate::msg::{ScoreResponse, InstantiateMsg, QueryMsg};
 use crate::state::{State, STATE};
 
 // version info for migration info
@@ -21,7 +21,7 @@ pub fn instantiate(
 
   // We're storing stuff in a variable called "state" of type "State"
   let state = State {
-    count: msg.count,
+    score: msg.score,
     owner: info.sender.clone(),
   };
 
@@ -34,17 +34,17 @@ pub fn instantiate(
   Ok(Response::new()
     .add_attribute("method", "instantiate")
     .add_attribute("owner", info.sender)
-    .add_attribute("count", msg.count.to_string()))
+    .add_attribute("score", msg.score.to_string()))
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
   match msg {
-      QueryMsg::GetCount {} => to_binary(&query_count(deps)?),
+      QueryMsg::GetScore {} => to_binary(&query_score(deps)?),
   }
 }
 
-fn query_count(deps: Deps) -> StdResult<CountResponse> {
+fn query_score(deps: Deps) -> StdResult<ScoreResponse> {
   let state = STATE.load(deps.storage)?;
-  Ok(CountResponse { count: state.count })
+  Ok(ScoreResponse { score: state.score })
 }

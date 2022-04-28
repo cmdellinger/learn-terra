@@ -1,0 +1,1 @@
+8c366277c4696090cad608b8a90d6086125f7231eed7694442a30c6027a61ca0  ./target/wasm32-unknown-unknown/release/clicker.wasm
