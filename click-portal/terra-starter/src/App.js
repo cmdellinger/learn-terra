@@ -2,6 +2,8 @@ import './App.css';
 //Bring in the required hooks and possible wallet states
 import { useWallet, WalletStatus } from "@terra-money/wallet-provider";
 
+import Menu from './components/Menu';
+
 function App() {
     // Current wallet status, connect & disconnect functions, available connections
     const { status, connect, disconnect, availableConnectTypes } = useWallet();
@@ -39,26 +41,37 @@ function App() {
     console.log("Wallet status is ", status);
     console.log("Available connection types:", availableConnectTypes);
 
-  return (
-    <main className="App">
-      <header>
-        <div className="header-titles">
-          <h1>⚔ Goblin War ⚔</h1>
-          <p>Only you can save us from Goblin town</p>
-        </div>
-
-      </header>
-
-      <div>
-        <img
-          src="https://media.giphy.com/media/B19AYwNXoXtcs/giphy.gif"
-          alt="Goblin gif"
-        />
-      </div>
-
-      {renderConnectButton()}
-    </main>
-  );
-}
+    return (
+      <main className="App">
+        <header>
+          <div className="header-titles">
+            <h1>⚔ Goblin War ⚔</h1>
+            <p>Only you can save us from Goblin town</p>
+          </div>
+  
+        </header>
+  
+        {/* If not connected, show the goblin GIF! */}
+        {status === WalletStatus.WALLET_NOT_CONNECTED && (
+          <div>
+            <img
+              src="https://media.giphy.com/media/B19AYwNXoXtcs/giphy.gif"
+              alt="Goblin gif"
+            />
+          </div>
+        )}
+  
+        {/* Show the menu after connection */}
+        {status === WalletStatus.WALLET_CONNECTED && (
+            <div className="game-menu-container">
+              <Menu />
+            </div>
+          )}
+          
+  
+        {renderConnectButton()}
+      </main>
+    );
+  }
 
 export default App;
