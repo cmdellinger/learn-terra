@@ -4,12 +4,17 @@ use cosmwasm_std::{to_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response,
 use cw2::set_contract_version;
 
 use crate::error::ContractError;
-use crate::msg::{ScoreResponse, InstantiateMsg, ExecuteMsg, QueryMsg, ScoresResponse};
+use crate::msg::{ScoreResponse, InstantiateMsg, ExecuteMsg, QueryMsg, ScoresResponse, MigrateMsg};
 use crate::state::{State, STORAGE};
 
 // version info for migration info
 const CONTRACT_NAME: &str = "crates.io:clicker";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
+
+#[cfg_attr(not(feature = "library"), entry_point)]
+pub fn migrate(_deps: DepsMut, _env: Env, _msg: MigrateMsg) -> StdResult<Response> {
+    Ok(Response::default())
+}
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(
