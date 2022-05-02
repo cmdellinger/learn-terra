@@ -46,8 +46,8 @@ const Leaderboard = () => {
       <header>
         <Link to="/" className="home-link">
           <div className="header-titles">
-            <h1>⚔ Goblin War ⚔️</h1>
-            <p>Only you can save us from Goblin town</p>
+            <h1>⚒️ Whack-A-Mole ⚒️</h1>
+            <p>Only you can save the golf course</p>
           </div>
         </Link>
       </header>

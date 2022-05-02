@@ -45,8 +45,8 @@ function App() {
       <main className="App">
         <header>
           <div className="header-titles">
-            <h1>⚔ Goblin War ⚔</h1>
-            <p>Only you can save us from Goblin town</p>
+            <h1>⚒️ Whack-A-Mole ⚒️</h1>
+            <p>Only you can save the golf course</p>
           </div>
   
         </header>
@@ -54,10 +54,7 @@ function App() {
         {/* If not connected, show the goblin GIF! */}
         {status === WalletStatus.WALLET_NOT_CONNECTED && (
           <div>
-            <img
-              src="https://media.giphy.com/media/B19AYwNXoXtcs/giphy.gif"
-              alt="Goblin gif"
-            />
+            <iframe title="cat-gif" src="https://giphy.com/embed/ebITvSXYKNvRm" width="480" height="440" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
           </div>
         )}
   
